@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# FlowSync
 
-## Getting Started
+### Modern • Simple • Connected
 
-First, run the development server:
+FlowSync is a modern and responsive **Next.js landing page** designed for a clean and professional digital experience. It showcases a structured agency-style interface with responsive layouts, reusable components, dark mode, and smooth user interactions.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🚀 Live Demo
+
+Add your Vercel deployment link here after deployment.
+
+## ✨ Features
+
+* Responsive design for desktop, tablet, and mobile
+* Dark mode support
+* Light/dark theme toggle
+* Modern hero section
+* Feature cards
+* Testimonials section
+* FAQ section
+* Contact section
+* Call-to-action section
+* About page
+* Accessible and user-friendly interface
+* Reusable React components
+
+## 🛠️ Technologies
+
+* Next.js
+* React
+* TypeScript
+* Tailwind CSS
+* next-themes
+* React Icons
+
+## 📁 Project Structure
+
+```text
+src/
+├── app/
+│   ├── page.tsx
+│   └── about/
+│       └── page.tsx
+│
+└── components/
+    ├── Navbar.tsx
+    ├── HeroSection.tsx
+    ├── FeatureCard.tsx
+    └── Footer.tsx
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🌙 Dark Mode
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+FlowSync uses **next-themes** to provide light and dark theme support with a responsive theme toggle.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📱 Responsive Design
 
-## Learn More
+The landing page is optimized for different screen sizes, including:
 
-To learn more about Next.js, take a look at the following resources:
+* Desktop
+* Tablet
+* Mobile
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 👩‍💻 Author
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**Sidra**
 
-## Deploy on Vercel
+Built as a **Week 5 Next.js Landing Page Assignment**.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+⭐ If you like this project, consider giving the repository a star!
