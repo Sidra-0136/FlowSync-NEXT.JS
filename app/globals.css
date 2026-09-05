@@ -1,9 +1,6 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme inline {
   --color-background: var(--background);
@@ -12,15 +9,772 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Global Variables */
+
+:root {
+  --background: #ffffff;
+  --foreground: #1e1b4b;
+
+  --blue: #4f46e5;
+  --purple: #6d4aff;
+  --pink: #ed4b9b;
+
+  --gradient: linear-gradient(
+    135deg,
+    #4f46e5 0%,
+    #6d4aff 45%,
+    #b84df1 70%,
+    #ed4b9b 100%
+  );
+
+  --text: #64748b;
+  --border: #e9e7f2;
+}
+
+/* Base */
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
+  margin: 0;
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+button,
+a {
+  transition: all 0.25s ease;
+}
+
+/* Navbar */
+
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(12px);
+}
+
+nav a:hover {
+  color: var(--purple);
+}
+
+.dark nav a:hover {
+  color: #b84df1;
+}
+
+/* Hero */
+
+#hero {
+  position: relative;
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 85% 30%,
+      rgba(79, 70, 229, 0.12),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 60% 80%,
+      rgba(237, 75, 155, 0.08),
+      transparent 35%
+    );
+}
+
+.dark #hero {
+  background:
+    radial-gradient(
+      circle at 85% 30%,
+      rgba(109, 74, 255, 0.18),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 60% 80%,
+      rgba(237, 75, 155, 0.12),
+      transparent 35%
+    );
+}
+
+#hero h1 {
+  line-height: 1.08;
+  letter-spacing: -1.5px;
+}
+
+#hero p:first-child {
+  color: var(--purple);
+}
+
+#hero a:first-child {
+  background: var(--gradient);
+  box-shadow: 0 8px 25px rgba(109, 74, 255, 0.25);
+}
+
+#hero a:first-child:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(237, 75, 155, 0.3);
+}
+
+#hero button:hover {
+  border-color: var(--purple);
+  color: var(--purple);
+}
+
+#hero img {
+  transition: transform 0.4s ease;
+}
+
+#hero img:hover {
+  transform: translateY(-5px);
+}
+
+/* Features */
+
+#features {
+  position: relative;
+}
+
+#features > div > div:first-child p {
+  color: var(--purple);
+}
+
+#features h2,
+#testimonials h2,
+#faq h2 {
+  letter-spacing: -0.8px;
+}
+
+#features > div > div:first-child p::after {
+  content: "";
+  display: block;
+  width: 45px;
+  height: 3px;
+  margin: 12px auto 0;
+  border-radius: 999px;
+  background: var(--gradient);
+}
+
+#features > div > div:last-child > div {
+  position: relative;
+  overflow: hidden;
+}
+
+#features > div > div:last-child > div::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--gradient);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+#features > div > div:last-child > div:hover::before {
+  transform: scaleX(1);
+}
+
+#features > div > div:last-child > div:hover {
+  border-color: rgba(109, 74, 255, 0.25);
+}
+
+#features > div > div:last-child h3 {
+  letter-spacing: -0.3px;
+}
+
+/* Testimonials */
+
+#testimonials {
+  position: relative;
+}
+
+#testimonials > div > p {
+  color: var(--purple);
+}
+
+#testimonials > div > p:first-child::after {
+  content: "";
+  display: block;
+  width: 45px;
+  height: 3px;
+  margin: 12px auto 0;
+  border-radius: 999px;
+  background: var(--gradient);
+}
+
+#testimonials > div > div {
+  align-items: stretch;
+}
+
+#testimonials > div > div > div {
+  position: relative;
+  border: 1px solid var(--border);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+#testimonials > div > div > div:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(109, 74, 255, 0.12);
+}
+
+.dark #testimonials > div > div > div {
+  border-color: #374151;
+}
+
+/* FAQ */
+
+/* ================================
+FAQ - Match Features Theme
+================================ */
+
+#faq {
+  background:
+    radial-gradient(
+      circle at 15% 30%,
+      rgba(109, 74, 255, 0.06),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 85% 70%,
+      rgba(237, 75, 155, 0.06),
+      transparent 35%
+    );
+}
+
+.dark #faq {
+  background:
+    radial-gradient(
+      circle at 15% 30%,
+      rgba(109, 74, 255, 0.12),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 85% 70%,
+      rgba(237, 75, 155, 0.08),
+      transparent 35%
+    );
+}
+
+/* FAQ heading */
+
+#faq > div > div:first-child p {
+  color: var(--purple);
+}
+
+#faq > div > div:first-child p::after {
+  content: "";
+  display: block;
+  width: 45px;
+  height: 3px;
+  margin: 12px auto 0;
+  border-radius: 999px;
+  background: var(--gradient);
+}
+
+/* FAQ cards */
+
+#faq > div > div:last-child > div {
+  position: relative;
+  overflow: hidden;
+  background: white;
+  border-color: var(--border);
+  box-shadow: 0 4px 15px rgba(109, 74, 255, 0.04);
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+#faq > div > div:last-child > div::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--gradient);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+#faq > div > div:last-child > div:hover {
+  transform: translateY(-3px);
+  border-color: rgba(109, 74, 255, 0.25);
+  box-shadow: 0 10px 25px rgba(109, 74, 255, 0.1);
+}
+
+#faq > div > div:last-child > div:hover::before {
+  transform: scaleX(1);
+}
+
+.dark #faq > div > div:last-child > div {
+  background: #111827;
+  border-color: #374151;
+}
+
+/* Contact */
+
+#contact {
+  position: relative;
+  background:
+    radial-gradient(
+      circle at 15% 30%,
+      rgba(109, 74, 255, 0.06),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 85% 70%,
+      rgba(237, 75, 155, 0.06),
+      transparent 35%
+    );
+}
+
+.dark #contact {
+  background:
+    radial-gradient(
+      circle at 15% 30%,
+      rgba(109, 74, 255, 0.12),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 85% 70%,
+      rgba(237, 75, 155, 0.08),
+      transparent 35%
+    );
+}
+
+#contact > div {
+  position: relative;
+  overflow: hidden;
+  background: var(--gradient);
+  box-shadow: 0 20px 50px rgba(109, 74, 255, 0.2);
+}
+
+#contact > div::before {
+  content: "";
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  top: -100px;
+  right: -70px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+#contact > div::after {
+  content: "";
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  bottom: -100px;
+  left: -60px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+#contact > div > div:first-child p::after {
+  display: none;
+}
+
+#contact > div > div:first-child h2 {
+  color: #ffffff;
+}
+
+#contact > div > div:first-child p:last-child {
+  color: #64748b;
+}
+
+.dark #contact > div > div:first-child p:last-child {
+  color: #d1d5db;
+}
+
+#contact form {
+  background: white;
+  border-color: var(--border);
+  box-shadow: 0 10px 35px rgba(109, 74, 255, 0.06);
+}
+
+.dark #contact form {
+  background: #111827;
+  border-color: #374151;
+}
+
+#contact input,
+#contact textarea {
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+#contact input:focus,
+#contact textarea:focus {
+  border-color: var(--purple);
+  box-shadow: 0 0 0 3px rgba(109, 74, 255, 0.1);
+}
+
+#contact button[type="submit"] {
+  background: var(--gradient);
+  box-shadow: 0 8px 25px rgba(109, 74, 255, 0.2);
+}
+
+#contact button[type="submit"]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(237, 75, 155, 0.25);
+}
+
+/* CTA */
+
+#cta > div {
+  background: var(--gradient);
+  box-shadow: 0 20px 50px rgba(109, 74, 255, 0.2);
+}
+
+#cta p {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+#cta a {
+  color: var(--purple);
+}
+
+#cta a:hover {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+/* About */
+
+.about-page {
+  position: relative;
+  overflow: hidden;
+}
+
+.about-page .about-gradient-text {
+  background: var(--gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.about-page .about-accent {
+  color: var(--purple);
+}
+
+.about-page .about-divider {
+  width: 50px;
+  height: 3px;
+  margin-top: 14px;
+  border-radius: 999px;
+  background: var(--gradient);
+}
+
+.about-hero {
+  background:
+    radial-gradient(
+      circle at 85% 30%,
+      rgba(109, 74, 255, 0.12),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 20% 70%,
+      rgba(237, 75, 155, 0.08),
+      transparent 35%
+    );
+}
+
+.dark .about-hero {
+  background:
+    radial-gradient(
+      circle at 85% 30%,
+      rgba(109, 74, 255, 0.18),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 20% 70%,
+      rgba(237, 75, 155, 0.12),
+      transparent 35%
+    );
+}
+
+.about-gradient-text {
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.about-flow {
+  background:
+    radial-gradient(
+      circle at 15% 30%,
+      rgba(109, 74, 255, 0.06),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 85% 70%,
+      rgba(237, 75, 155, 0.06),
+      transparent 35%
+    );
+}
+
+.dark .about-flow {
+  background:
+    radial-gradient(
+      circle at 15% 30%,
+      rgba(109, 74, 255, 0.12),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 85% 70%,
+      rgba(237, 75, 155, 0.08),
+      transparent 35%
+    );
+}
+
+.about-flow-card {
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.about-flow-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--gradient);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.about-flow-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(109, 74, 255, 0.25);
+  box-shadow: 0 10px 25px rgba(109, 74, 255, 0.1);
+}
+
+.about-flow-card:hover::before {
+  transform: scaleX(1);
+}
+
+.about-why {
+  background: white;
+}
+
+.dark .about-why {
+  background: #030712;
+}
+
+.about-why-card {
+  position: relative;
+  overflow: hidden;
+  background: white;
+  border-color: var(--border);
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.about-why-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(109, 74, 255, 0.25);
+  box-shadow: 0 10px 25px rgba(109, 74, 255, 0.1);
+}
+
+.dark .about-why-card {
+  background: #111827;
+  border-color: #374151;
+}
+
+.about-final-cta {
+  background: var(--gradient);
+  box-shadow: 0 20px 50px rgba(109, 74, 255, 0.2);
+}
+
+/* Modal */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(8px);
+}
+
+.modal-content {
+  width: 100%;
+  max-width: 550px;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  background: white;
+  padding: 2rem;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
+}
+
+.dark .modal-content {
+  border-color: #374151;
+  background: #111827;
+}
+
+.modal-content h2 {
+  color: #111827;
+}
+
+.dark .modal-content h2 {
+  color: white;
+}
+
+.modal-close {
+  display: flex;
+  height: 36px;
+  width: 36px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  font-size: 24px;
+  color: #64748b;
+}
+
+.modal-close:hover {
+  background: #f1f5f9;
+  color: #111827;
+}
+
+.dark .modal-close:hover {
+  background: #1f2937;
+  color: white;
+}
+
+/* Footer */
+
+footer {
+  position: relative;
+}
+
+footer a:hover {
+  color: var(--purple);
+}
+
+footer > div:last-child {
+  margin-top: 40px;
+}
+
+.dark footer {
+  background: #0f172a;
+}
+
+/* Dark Mode */
+
+.dark {
+  color-scheme: dark;
+}
+
+.dark body {
+  background: #030712;
+  color: #f9fafb;
+}
+
+.dark h1,
+.dark h2,
+.dark h3 {
+  color: #ffffff;
+}
+
+/* Accessibility */
+
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible {
+  outline: 2px solid var(--purple);
+  outline-offset: 3px;
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+  #hero {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+
+  #hero h1 {
+    font-size: 3rem;
+  }
+
+  #features h2,
+  #testimonials h2,
+  #faq h2,
+  #contact h2 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 640px) {
+  #hero h1 {
+    font-size: 2.6rem;
+  }
+
+  #hero > div {
+    gap: 2.5rem;
+  }
+
+  #features > div > div:last-child > div {
+    padding: 1.5rem;
+  }
+
+  #testimonials > div > div {
+    grid-template-columns: 1fr;
+  }
+
+  #contact > div {
+    padding: 3rem 1.5rem;
+  }
+
+  .modal-content {
+    padding: 1.5rem;
+  }
+}
+
+/* Reduced Motion */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }
