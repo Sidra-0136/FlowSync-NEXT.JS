@@ -6,7 +6,7 @@ FlowSync is a modern and responsive **Next.js landing page** designed for a clea
 
 ## 🚀 Live Demo
 
-Add your Vercel deployment link here after deployment.
+https://flow-sync-next-js.vercel.app/
 
 ## ✨ Features
 
