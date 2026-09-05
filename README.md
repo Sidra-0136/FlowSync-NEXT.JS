@@ -64,6 +64,4 @@ The landing page is optimized for different screen sizes, including:
 
 **Sidra**
 
-Built as a **Week 5 Next.js Landing Page Assignment**.
-
 ⭐ If you like this project, consider giving the repository a star!
