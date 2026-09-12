@@ -54,6 +54,13 @@ export default function Navbar() {
             Testimonials
           </Link>
 
+<Link
+  href="#live-data"
+  className="text-gray-700 hover:text-blue-600 dark:text-gray-200"
+>
+  Tasks
+</Link>
+
           <Link
             href="#faq"
             className="text-gray-700 hover:text-blue-600 dark:text-gray-200"

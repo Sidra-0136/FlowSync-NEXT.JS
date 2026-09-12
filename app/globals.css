@@ -10,15 +10,12 @@
 }
 
 /* Global Variables */
-
 :root {
   --background: #ffffff;
   --foreground: #1e1b4b;
-
   --blue: #4f46e5;
   --purple: #6d4aff;
   --pink: #ed4b9b;
-
   --gradient: linear-gradient(
     135deg,
     #4f46e5 0%,
@@ -26,13 +23,11 @@
     #b84df1 70%,
     #ed4b9b 100%
   );
-
   --text: #64748b;
   --border: #e9e7f2;
 }
 
 /* Base */
-
 html {
   scroll-behavior: smooth;
 }
@@ -60,8 +55,37 @@ a {
   transition: all 0.25s ease;
 }
 
-/* Navbar */
+/* =========================
+   DARK MODE - WHOLE PAGE
+   ========================= */
 
+.dark body {
+  background: #111827;
+  color: #f9fafb;
+}
+
+/* Keep the whole page the SAME background */
+.dark #hero,
+.dark #features,
+.dark #testimonials,
+.dark #live-data,
+.dark #faq,
+.dark #contact,
+.dark #cta,
+.dark .about-page,
+.dark .about-hero,
+.dark .about-flow,
+.dark .about-why,
+.dark .about-final-cta {
+  background: #111827;
+}
+
+/* ONLY FOOTER gets a different background */
+.dark footer {
+  background: #080b12;
+}
+
+/* Navbar */
 nav {
   position: sticky;
   top: 0;
@@ -78,11 +102,9 @@ nav a:hover {
 }
 
 /* Hero */
-
 #hero {
   position: relative;
   overflow: hidden;
-
   background:
     radial-gradient(
       circle at 85% 30%,
@@ -97,17 +119,7 @@ nav a:hover {
 }
 
 .dark #hero {
-  background:
-    radial-gradient(
-      circle at 85% 30%,
-      rgba(109, 74, 255, 0.18),
-      transparent 35%
-    ),
-    radial-gradient(
-      circle at 60% 80%,
-      rgba(237, 75, 155, 0.12),
-      transparent 35%
-    );
+  background: #111827;
 }
 
 #hero h1 {
@@ -143,7 +155,6 @@ nav a:hover {
 }
 
 /* Features */
-
 #features {
   position: relative;
 }
@@ -199,7 +210,6 @@ nav a:hover {
 }
 
 /* Testimonials */
-
 #testimonials {
   position: relative;
 }
@@ -239,12 +249,294 @@ nav a:hover {
   border-color: #374151;
 }
 
+/* =========================================================
+   TASK / REST API SECTION
+   ========================================================= */
+
+#live-data {
+  position: relative;
+  background:
+    radial-gradient(
+      circle at 15% 30%,
+      rgba(109, 74, 255, 0.06),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 85% 70%,
+      rgba(237, 75, 155, 0.06),
+      transparent 35%
+    );
+}
+
+/* Dark mode background */
+.dark #live-data {
+  background: #111827;
+}
+
+/* =========================================================
+   TASK HEADING - LIGHT MODE
+   ========================================================= */
+
+#live-data > div {
+  position: relative;
+  z-index: 1;
+}
+
+#live-data > div > div:first-child p:first-child {
+  color: var(--purple);
+}
+
+#live-data > div > div:first-child p:first-child::after {
+  content: "";
+  display: block;
+  width: 45px;
+  height: 3px;
+  margin: 12px auto 0;
+  border-radius: 999px;
+  background: var(--gradient);
+}
+
+#live-data > div > div:first-child h2 {
+  color: #111827;
+  letter-spacing: -0.8px;
+}
+
+#live-data > div > div:first-child p:last-child {
+  color: #64748b;
+}
+
+
+/* =========================================================
+   TASK HEADING - DARK MODE
+   ========================================================= */
+
+.dark #live-data > div > div:first-child p:first-child {
+  color: #a5b4fc;
+}
+
+.dark #live-data > div > div:first-child h2 {
+  color: #ffffff;
+}
+
+.dark #live-data > div > div:first-child p:last-child {
+  color: #a5b4fc;
+}
+
+
+/* =========================================================
+   SEARCH - LIGHT MODE
+   ========================================================= */
+
+#live-data input {
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  color: #111827;
+  box-shadow: 0 4px 15px rgba(109, 74, 255, 0.05);
+}
+
+#live-data input::placeholder {
+  color: #94a3b8;
+}
+
+#live-data input:focus {
+  outline: none;
+  border-color: var(--purple);
+  box-shadow: 0 0 0 3px rgba(109, 74, 255, 0.12);
+}
+
+
+/* =========================================================
+   SEARCH - DARK MODE
+   ========================================================= */
+
+.dark #live-data input {
+  border-color: #374151;
+  background: #1f2937;
+  color: #ffffff;
+}
+
+.dark #live-data input::placeholder {
+  color: #9ca3af;
+}
+
+.dark #live-data input:focus {
+  border-color: #818cf8;
+  box-shadow: 0 0 0 3px rgba(109, 74, 255, 0.15);
+}
+
+
+/* =========================================================
+   API CONNECTED
+   ========================================================= */
+
+#live-data .text-green-400 {
+  color: #16a34a;
+}
+
+.dark #live-data .text-green-400 {
+  color: #86efac;
+}
+
+
+/* =========================================================
+   TASK CARDS - LIGHT MODE
+   ========================================================= */
+
+#live-data article {
+  position: relative;
+  overflow: hidden;
+
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease;
+}
+
+
+/* Gradient line on cards */
+#live-data article::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 4px;
+
+  background: var(--gradient);
+
+  transform: scaleX(0);
+  transform-origin: left;
+
+  transition: transform 0.3s ease;
+}
+
+
+/* Card hover */
+#live-data article:hover {
+  transform: translateY(-5px);
+  border-color: rgba(109, 74, 255, 0.25);
+  background: #ffffff;
+  box-shadow: 0 15px 35px rgba(109, 74, 255, 0.12);
+}
+
+#live-data article:hover::before {
+  transform: scaleX(1);
+}
+
+
+/* =========================================================
+   TASK CARDS - DARK MODE
+   ========================================================= */
+
+.dark #live-data article {
+  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.08);
+
+  backdrop-filter: blur(14px);
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.14);
+}
+
+.dark #live-data article:hover {
+  border-color: rgba(165, 180, 252, 0.35);
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 15px 35px rgba(109, 74, 255, 0.18);
+}
+
+
+/* =========================================================
+   TASK CARD TEXT - LIGHT MODE
+   ========================================================= */
+
+#live-data article .text-blue-300 {
+  color: #4f46e5;
+}
+
+#live-data article h3 {
+  color: #111827;
+  letter-spacing: -0.2px;
+}
+
+#live-data article .border-t {
+  border-color: #e5e7eb;
+}
+
+#live-data article .text-blue-100\/60 {
+  color: #64748b;
+}
+
+#live-data article .text-green-400 {
+  color: #16a34a;
+}
+
+#live-data article .text-yellow-300 {
+  color: #ca8a04;
+}
+
+
+/* =========================================================
+   TASK CARD TEXT - DARK MODE
+   ========================================================= */
+
+.dark #live-data article .text-blue-300 {
+  color: #a5b4fc;
+}
+
+.dark #live-data article h3 {
+  color: #ffffff;
+}
+
+.dark #live-data article .border-t {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark #live-data article .text-blue-100\/60 {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.dark #live-data article .text-green-400 {
+  color: #86efac;
+}
+
+.dark #live-data article .text-yellow-300 {
+  color: #fde68a;
+}
+
+
+/* =========================================================
+   LOADING / OTHER TEXT
+   ========================================================= */
+
+#live-data .text-blue-200 {
+  color: #4f46e5;
+}
+
+.dark #live-data .text-blue-200 {
+  color: #c7d2fe;
+}
+
+#live-data p {
+  transition: color 0.25s ease;
+}
+
+
+/* =========================================================
+   REMOVE OLD DECORATIVE CIRCLE
+   ========================================================= */
+
+#live-data::after {
+  display: none;
+}
+
+
 /* FAQ */
-
-/* ================================
-FAQ - Match Features Theme
-================================ */
-
 #faq {
   background:
     radial-gradient(
@@ -260,23 +552,12 @@ FAQ - Match Features Theme
 }
 
 .dark #faq {
-  background:
-    radial-gradient(
-      circle at 15% 30%,
-      rgba(109, 74, 255, 0.12),
-      transparent 35%
-    ),
-    radial-gradient(
-      circle at 85% 70%,
-      rgba(237, 75, 155, 0.08),
-      transparent 35%
-    );
+  background: #111827;
 }
 
 /* FAQ heading */
-
 #faq > div > div:first-child p {
-  color: var(--purple);
+  color: #a5b4fc;
 }
 
 #faq > div > div:first-child p::after {
@@ -290,7 +571,6 @@ FAQ - Match Features Theme
 }
 
 /* FAQ cards */
-
 #faq > div > div:last-child > div {
   position: relative;
   overflow: hidden;
@@ -332,7 +612,6 @@ FAQ - Match Features Theme
 }
 
 /* Contact */
-
 #contact {
   position: relative;
   background:
@@ -349,17 +628,7 @@ FAQ - Match Features Theme
 }
 
 .dark #contact {
-  background:
-    radial-gradient(
-      circle at 15% 30%,
-      rgba(109, 74, 255, 0.12),
-      transparent 35%
-    ),
-    radial-gradient(
-      circle at 85% 70%,
-      rgba(237, 75, 155, 0.08),
-      transparent 35%
-    );
+  background: #111827;
 }
 
 #contact > div {
@@ -442,7 +711,6 @@ FAQ - Match Features Theme
 }
 
 /* CTA */
-
 #cta > div {
   background: var(--gradient);
   box-shadow: 0 20px 50px rgba(109, 74, 255, 0.2);
@@ -461,7 +729,6 @@ FAQ - Match Features Theme
 }
 
 /* About */
-
 .about-page {
   position: relative;
   overflow: hidden;
@@ -501,17 +768,7 @@ FAQ - Match Features Theme
 }
 
 .dark .about-hero {
-  background:
-    radial-gradient(
-      circle at 85% 30%,
-      rgba(109, 74, 255, 0.18),
-      transparent 35%
-    ),
-    radial-gradient(
-      circle at 20% 70%,
-      rgba(237, 75, 155, 0.12),
-      transparent 35%
-    );
+  background: #111827;
 }
 
 .about-gradient-text {
@@ -536,17 +793,7 @@ FAQ - Match Features Theme
 }
 
 .dark .about-flow {
-  background:
-    radial-gradient(
-      circle at 15% 30%,
-      rgba(109, 74, 255, 0.12),
-      transparent 35%
-    ),
-    radial-gradient(
-      circle at 85% 70%,
-      rgba(237, 75, 155, 0.08),
-      transparent 35%
-    );
+  background: #111827;
 }
 
 .about-flow-card {
@@ -586,7 +833,7 @@ FAQ - Match Features Theme
 }
 
 .dark .about-why {
-  background: #030712;
+  background: #111827;
 }
 
 .about-why-card {
@@ -617,7 +864,6 @@ FAQ - Match Features Theme
 }
 
 /* Modal */
-
 .modal-overlay {
   position: fixed;
   inset: 0;
@@ -675,7 +921,6 @@ FAQ - Match Features Theme
 }
 
 /* Footer */
-
 footer {
   position: relative;
 }
@@ -689,17 +934,19 @@ footer > div:last-child {
 }
 
 .dark footer {
-  background: #0f172a;
+  background: #111827;
 }
 
-/* Dark Mode */
+/* ================================
+   DARK MODE - CLEAN SECTION STYLE
+   ================================ */
 
 .dark {
   color-scheme: dark;
 }
 
 .dark body {
-  background: #030712;
+  background: #111827;
   color: #f9fafb;
 }
 
@@ -709,8 +956,52 @@ footer > div:last-child {
   color: #ffffff;
 }
 
-/* Accessibility */
+/* Section names */
+.dark #features > div > div:first-child p,
+.dark #testimonials > div > p:first-child,
+.dark #faq > div > div:first-child p,
+.dark #live-data > div > div:first-child p,
+.dark .about-accent {
+  color: #a5b4fc;
+}
 
+/* Gradient line under section names */
+.dark #features > div > div:first-child p::after,
+.dark #testimonials > div > p:first-child::after,
+.dark #faq > div > div:first-child p::after,
+.dark #live-data > div > div:first-child p::after {
+  background: var(--gradient);
+}
+
+/* Main section headings */
+.dark #features h2,
+.dark #testimonials h2,
+.dark #faq h2,
+.dark #live-data h2 {
+  color: #ffffff;
+}
+
+/* Section descriptions */
+.dark #features > div > div:first-child p:last-child,
+.dark #testimonials > div > p:last-child,
+.dark #faq > div > div:first-child p:last-child {
+  color: #a5b4fc;
+}
+
+/* Small gradient divider */
+.dark #features > div > div:first-child p:last-child::after,
+.dark #testimonials > div > p:last-child::after,
+.dark #faq > div > div:first-child p:last-child::after {
+  content: "";
+  display: block;
+  width: 45px;
+  height: 3px;
+  margin: 12px auto 0;
+  border-radius: 999px;
+  background: var(--gradient);
+}
+
+/* Accessibility */
 a:focus-visible,
 button:focus-visible,
 summary:focus-visible {
@@ -719,7 +1010,6 @@ summary:focus-visible {
 }
 
 /* Responsive */
-
 @media (max-width: 768px) {
   #hero {
     padding-top: 60px;
@@ -765,7 +1055,6 @@ summary:focus-visible {
 }
 
 /* Reduced Motion */
-
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

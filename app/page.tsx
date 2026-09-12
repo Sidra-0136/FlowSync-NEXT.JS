@@ -7,9 +7,22 @@ import FeatureCard from "@/src/components/FeatureCard";
 import Footer from "@/src/components/Footer";
 import { useEffect, useState } from "react";
 
+type Task = {
+  id: number;
+  userId: number;
+  title: string;
+  completed: boolean;
+};
+
 export default function Home() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Week 6 - REST API states
+  const [data, setData] = useState<Task[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
 
   const [form, setForm] = useState({
     name: "",
@@ -25,6 +38,19 @@ export default function Home() {
 
   const [formStatus, setFormStatus] = useState("");
 
+  // FlowSync-style task names
+  const flowSyncTaskTitles = [
+    "Review Project Requirements",
+    "Update Team Task Board",
+    "Prepare Weekly Progress Report",
+    "Complete UI Design Review",
+    "Organize Project Files",
+    "Review Team Feedback",
+    "Update Project Timeline",
+    "Plan Upcoming Sprint",
+    "Finalize Project Tasks",
+  ];
+
   // Close demo modal with Escape key
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -39,6 +65,45 @@ export default function Home() {
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, []);
+
+  // Week 6 - Fetch data from REST API
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setIsLoading(true);
+        setError("");
+
+        const response = await fetch(
+          "https://jsonplaceholder.typicode.com/todos"
+        );
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch tasks");
+        }
+
+        const result: Task[] = await response.json();
+
+        setData(result);
+      } catch {
+        setError("Failed to load workflow tasks. Please try again.");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  // Use the first 9 API records for the visible FlowSync task cards
+  const flowSyncData = data.slice(0, 9).map((item, index) => ({
+    ...item,
+    displayTitle: flowSyncTaskTitles[index],
+  }));
+
+  // Week 6 - Search and filtering
+  const filteredData = flowSyncData.filter((item) =>
+    item.displayTitle.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   const handleFormChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -110,6 +175,19 @@ export default function Home() {
         "Yes. You can cancel your FlowSync plan whenever you need to.",
     },
   ];
+
+  const teamNames: Record<number, string> = {
+  1: "Development Team",
+  2: "Design Team",
+  3: "Project Management",
+  4: "QA Team",
+  5: "Marketing Team",
+  6: "Product Team",
+  7: "Research Team",
+  8: "Support Team",
+  9: "Operations Team",
+  10: "Strategy Team",
+};
 
   return (
     <main className="min-h-screen bg-white dark:bg-gray-950">
@@ -252,6 +330,111 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Week 6 - Live REST API Data */}
+      <section
+        id="live-data"
+        className="bg-gray-950 px-6 py-20 text-white md:px-12 lg:px-20"
+      >
+        <div className="mx-auto max-w-7xl">
+          {/* Heading */}
+          <div className="mb-12 text-center">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-blue-400">
+              REST API Integration
+            </p>
+
+            <h2 className="text-4xl font-bold">
+              Live Workflow Tasks
+            </h2>
+
+            <p className="mx-auto mt-4 max-w-2xl text-gray-400">
+              FlowSync dynamically fetches workflow task data from a REST API
+              and displays it in a clean, organized workspace.
+            </p>
+          </div>
+
+          {/* Search */}
+          <div className="mx-auto mb-10 max-w-xl">
+            <input
+              type="text"
+              placeholder="Search workflow tasks..."
+              value={searchTerm}
+              onChange={(event) => setSearchTerm(event.target.value)}
+              className="w-full rounded-xl border border-gray-700 bg-gray-900 px-5 py-3 text-white outline-none transition placeholder:text-gray-500 focus:border-blue-500"
+            />
+          </div>
+
+          {/* Loading State */}
+          {isLoading && (
+            <div className="py-12 text-center text-gray-400">
+              Loading workflow tasks...
+            </div>
+          )}
+
+          {/* Error State */}
+          {error && (
+            <div className="py-12 text-center text-red-400">
+              {error}
+            </div>
+          )}
+
+          {/* Dynamic Data */}
+          {!isLoading && !error && (
+            <>
+              {/* API Status */}
+              <div className="mb-6 text-right">
+                <p className="text-sm text-green-400">
+                  ✓ API Connected
+                </p>
+              </div>
+
+              {/* 3 Columns × 3 Rows */}
+              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                {filteredData.map((item) => (
+                  <article
+                    key={item.id}
+                    className="rounded-2xl border border-gray-800 bg-gray-900 p-6 transition hover:-translate-y-1 hover:border-blue-500"
+                  >
+                    <div className="mb-5 flex items-center justify-between">
+                      <span className="text-sm font-semibold text-blue-400">
+                        Task #{item.id}
+                      </span>
+
+                      <span
+                        className={`rounded-full px-3 py-1 text-xs font-semibold ${
+                          item.completed
+                            ? "bg-green-500/10 text-green-400"
+                            : "bg-yellow-500/10 text-yellow-400"
+                        }`}
+                      >
+                        {item.completed ? "Completed" : "In Progress"}
+                      </span>
+                    </div>
+
+                    <h3 className="mb-5 text-lg font-semibold leading-7 text-white">
+                      {item.displayTitle}
+                    </h3>
+
+                    <div className="flex items-center justify-between border-t border-gray-800 pt-4 text-sm text-gray-400">
+                      <span>Workflow Task</span>
+                      <p className="text-sm text-gray-400">
+  {teamNames[item.userId] || "FlowSync Team"}
+</p>
+                    </div>
+                  </article>
+                ))}
+              </div>
+
+              {/* No Search Results */}
+              {filteredData.length === 0 && (
+                <p className="py-12 text-center text-gray-400">
+                  No workflow tasks found.
+                </p>
+              )}
+            </>
+          )}
+        </div>
+      </section>
+
       {/* FAQ */}
       <section id="faq" className="px-6 py-20 md:px-12 lg:px-20">
         <div className="mx-auto max-w-4xl">
@@ -314,7 +497,6 @@ export default function Home() {
       >
         <div className="mx-auto max-w-4xl">
           <div className="mb-10 text-center">
-
             <h2 className="text-4xl font-bold text-gray-900 dark:text-white">
               Let's build a more productive workflow.
             </h2>
@@ -426,7 +608,10 @@ export default function Home() {
       </section>
 
       {/* CTA */}
-      <section id="cta" className="px-6 py-20 text-center md:px-12 lg:px-20">
+      <section
+        id="cta"
+        className="px-6 py-20 text-center md:px-12 lg:px-20"
+      >
         <div className="mx-auto max-w-4xl rounded-3xl px-8 py-16 text-white">
           <h2 className="text-4xl font-bold">
             Ready to boost your team productivity?
